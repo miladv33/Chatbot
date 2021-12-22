@@ -1,0 +1,35 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$Versions.gradle"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Versions.kotlin"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$Versions.hilt"
+        classpath 'com.github.ben-manes:gradle-versions-plugin:+'
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$Versions.android_navigation"
+        classpath "org.jacoco:org.jacoco.core:0.8.5"
+    }
+}
+
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("1.15.0")
+}
+
+allprojects {
+
+    apply from: "$rootDir/config/detekt.gradle"
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

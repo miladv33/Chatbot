@@ -83,6 +83,8 @@ dependencies {
     implementation(AndroidLib.viewmodel_runtime)
     implementation(AndroidLib.viewmodel_extension)
 
+//    implementation(AndroidLib.chatmessageview)
+
     kapt(AndroidLib.viewmodel_compiler)
 
     implementation 'com.intuit.sdp:sdp-android:1.0.6'

@@ -17,7 +17,7 @@ class TokenInterceptor : Interceptor {
         // todo: setup repository for fetch access token
 //        val accessToken = authorizationRepository.fetchFreshAccessToken()
         return newBuilder()
-            .header("Authorization", "Bearer MyToken")
+            .header("x-rapidapi-key", "09c0565c62msh214972c9575a8b1p13bc4cjsndc985d96d6a0")
             .build()
     }
 }

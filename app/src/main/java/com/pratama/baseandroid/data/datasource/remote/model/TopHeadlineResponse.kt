@@ -3,16 +3,11 @@ package com.pratama.baseandroid.data.datasource.remote.model
 import com.pratama.baseandroid.domain.entity.News
 
 data class TopHeadlineResponse(
-    val status: String,
-    val totalResults: Int,
-    val articles: List<NewsResponse>
+    val cnt: String
 )
 
-fun TopHeadlineResponse.toNewsList(): List<News> {
-    val listNews = mutableListOf<News>()
-    articles.map {
-        listNews.add(toNews((it)))
-    }
+fun TopHeadlineResponse.toNewsList(): News {
+    val listNews = News("")
     return listNews
 }
 

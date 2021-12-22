@@ -48,7 +48,7 @@ class NewsRepositoryImplTest {
     fun `test getTopHeadlines throw exceptions`() = runBlockingTest {
         every { networkChecker.isNetworkConnected() } throws IOException()
 
-        val result = newsRepository.getTopHeadlines(country = "us", category = "technology")
+        val result = newsRepository.getTopHeadlines()
 
         assertTrue(result.isLeft)
     }
@@ -65,12 +65,11 @@ class NewsRepositoryImplTest {
 
         coEvery {
             newsRemoteDatasource.getTopHeadlines(
-                category,
-                country
-            )
-        } returns generateFakeData()
 
-        val result = newsRepository.getTopHeadlines(country, category)
+            )
+        } returns generateFakeData().first()
+
+        val result = newsRepository.getTopHeadlines()
 
         coVerify { newsLocalDatasource.insertNews(generateFakeData()) }
 
@@ -90,7 +89,7 @@ class NewsRepositoryImplTest {
         coEvery { newsLocalDatasource.getAllNews() } returns generateFakeData()
 
         // when
-        val result = newsRepository.getTopHeadlines(country, category)
+        val result = newsRepository.getTopHeadlines()
         // then
         assertTrue(result.isRight)
     }
@@ -98,13 +97,7 @@ class NewsRepositoryImplTest {
     private fun generateFakeData(): List<News> {
         return listOf(
             News(
-                source = NewsSource(id = "anu", name = "title"),
-                author = "",
-                title = "title",
-                description = "",
-                url = "",
-                urlToImage = "",
-                publishedAt = ""
+               ""
             )
         )
     }
@@ -121,7 +114,7 @@ class NewsRepositoryImplTest {
             coEvery { newsLocalDatasource.getAllNews() } returns emptyList()
 
             // when
-            val result = newsRepository.getTopHeadlines(country, category)
+            val result = newsRepository.getTopHeadlines()
             // then
             assertTrue(result.isLeft)
         }

@@ -8,7 +8,7 @@ import javax.inject.Inject
 class NewsRemoteDatasourceImpl @Inject constructor(private val services: NewsApiServices) :
     NewsRemoteDatasource {
 
-    override suspend fun getTopHeadlines(category: String, country: String): List<News> {
-        return services.getTopHeadlines(country, category).toNewsList()
+    override suspend fun getTopHeadlines(): News {
+        return services.getTopHeadlines()
     }
 }

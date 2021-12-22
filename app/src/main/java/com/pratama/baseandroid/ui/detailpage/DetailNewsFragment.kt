@@ -26,7 +26,7 @@ class DetailNewsFragment : BaseFragmentBinding<FragmentDetailNewsBinding>() {
     override fun setupView(binding: FragmentDetailNewsBinding) {
         with(binding) {
             newsDto?.let {
-                newsTitle.text = it.title
+                newsTitle.text = it.cnt
             }
         }
     }

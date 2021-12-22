@@ -24,7 +24,7 @@ class TokenRefreshAuthenticator : Authenticator {
 
     private fun Request.signWithToken(accessToken: String) =
         newBuilder()
-            .header("Authorization", "Bearer $accessToken")
+            .header("x-rapidapi-key", "09c0565c62msh214972c9575a8b1p13bc4cjsndc985d96d6a0")
             .build()
 }
 

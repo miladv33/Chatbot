@@ -18,13 +18,13 @@ class ListNewsViewModel @Inject constructor(private val getTopHeadlineUseCase: G
         data class Error(val message: String) : ListNewsState()
     }
 
-    fun getTopHeadlinesByCountry(country: String, category: String) {
+    fun getTopHeadlinesByCountry(country: String) {
         viewModelScope.launch {
             uiState.postValue(ListNewsState.Loading)
 
             ThreadInfoLogger.logThreadInfo("get top headlines viewmodel")
             val result =
-                getTopHeadlineUseCase.run(GetTopHeadlineUseCase.TopHeadlineParam(country, category))
+                getTopHeadlineUseCase.run(GetTopHeadlineUseCase.TopHeadlineParam(country))
 
             result.fold({ failure ->
                 when (failure) {
@@ -35,7 +35,7 @@ class ListNewsViewModel @Inject constructor(private val getTopHeadlineUseCase: G
                 }
 
             }, { result ->
-                if (!result.isNullOrEmpty()) {
+                if (result.isNotEmpty()) {
                     uiState.postValue(ListNewsState.NewsLoaded(result))
                 }
             })

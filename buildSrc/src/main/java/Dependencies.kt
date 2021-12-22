@@ -25,6 +25,7 @@ object Versions {
     const val android_navigation = "2.3.2"
     const val detekt = "1.15.0"
     const val mockk = "1.10.5"
+    const val chatmessageviewVersion = "1.10.5"
 }
 
 
@@ -57,6 +58,7 @@ object AndroidLib {
     const val viewmodel_compiler =
         "androidx.lifecycle:lifecycle-compiler:${Versions.android_lifecycle}"
     const val timber = "com.github.ajalt:timberkt:1.5.1"
+    const val chatmessageview = "com.github.bassaer:chatmessageview:${Versions.chatmessageviewVersion}"
 }
 
 object AndroidTestLib {

@@ -4,13 +4,7 @@ import com.pratama.baseandroid.domain.entity.News
 import com.pratama.baseandroid.domain.entity.NewsSource
 
 data class NewsResponse(
-    val source: SourceResponse,
-    val author: String? = "",
-    val title: String? = "",
-    val description: String? = "",
-    val url: String? = "",
-    val urlToImage: String? = "",
-    val publishedAt: String? = ""
+    val cnt: String
 )
 
 data class SourceResponse(
@@ -20,15 +14,7 @@ data class SourceResponse(
 
 
 fun toNews(newsResponse: NewsResponse): News {
-    return News(
-        author = newsResponse.author ?: "",
-        title = newsResponse.title ?: "",
-        description = newsResponse.description ?: "",
-        url = newsResponse.url ?: "",
-        urlToImage = newsResponse.urlToImage ?: "",
-        publishedAt = newsResponse.publishedAt ?: "",
-        source = toNewsSource(newsResponse.source)
-    )
+    return News(newsResponse.cnt)
 }
 
 fun toNewsSource(source: SourceResponse): NewsSource {

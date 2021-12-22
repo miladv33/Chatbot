@@ -67,13 +67,7 @@ class NewsLocalDatasourceImplTest {
     private fun generateFakeNewsEntity(): List<NewsEntity> {
         return listOf(
             NewsEntity(
-                title = "title",
-                author = "author",
-                description = "desc",
-                urlToImage = "url",
-                url = "url",
-                publishedAt = "",
-                source = "source"
+               ""
             )
         )
 
@@ -81,11 +75,7 @@ class NewsLocalDatasourceImplTest {
 
     private fun generateFakeNews(): List<News> {
         return listOf(
-            News(
-                source = NewsSource(id = "id", name = ""),
-                author = "author",
-                title = "title", description = "", url = "url", urlToImage = "", publishedAt = ""
-            )
+            News("")
         )
     }
 }

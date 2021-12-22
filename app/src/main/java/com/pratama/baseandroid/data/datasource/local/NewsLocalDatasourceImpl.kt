@@ -10,7 +10,7 @@ class NewsLocalDatasourceImpl(private val appDatabase: AppDatabase) : NewsLocalD
 
     override suspend fun insertNews(news: List<News>) {
         news.map {
-            d { "insert to local data ${it.title}" }
+            d { "insert to local data ${it.cnt}" }
             appDatabase.newsDao().insert(it.toNewsEntity())
         }
     }

@@ -20,20 +20,17 @@ class NewsRepositoryImpl @Inject constructor(
     private val networkChecker: NetworkChecker
 ) : NewsRepository {
 
-    override suspend fun getTopHeadlines(
-        country: String,
-        category: String
-    ): Either<Failure, List<News>> {
+    override suspend fun getTopHeadlines(): Either<Failure, List<News>> {
         return try {
             if (networkChecker.isNetworkConnected()) {
                 d { "connection : connect to internet" }
                 // connected to internet
                 ThreadInfoLogger.logThreadInfo("get top headlines repository")
-                val response = remote.getTopHeadlines(category = category, country = country)
+                val response = remote.getTopHeadlines()
 
-                local.insertNews(response)
+                local.insertNews(listOf(response))
 
-                Either.Right(response)
+                Either.Right(listOf(response))
             } else {
                 d { "connection : disconnect" }
                 // not connected

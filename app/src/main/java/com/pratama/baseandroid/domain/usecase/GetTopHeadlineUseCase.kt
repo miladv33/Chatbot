@@ -16,13 +16,10 @@ class GetTopHeadlineUseCase @Inject constructor(private val repository: NewsRepo
     override suspend fun run(params: TopHeadlineParam): Either<Failure, List<News>> =
         withContext(Dispatchers.IO) {
             ThreadInfoLogger.logThreadInfo("get top headline usecase")
-            repository.getTopHeadlines(params.country, params.category)
+            repository.getTopHeadlines()
         }
 
-    data class TopHeadlineParam(
-        val country: String,
-        val category: String
-    )
+    data class TopHeadlineParam(val cnt: String)
 
 
 }

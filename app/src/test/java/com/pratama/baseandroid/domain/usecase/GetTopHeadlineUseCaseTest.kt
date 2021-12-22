@@ -42,10 +42,7 @@ class GetTopHeadlineUseCaseTest {
     fun `test usecaseRun return failure`() {
         // given
         coEvery {
-            newsRepo.getTopHeadlines(
-                country = "us",
-                category = "tech"
-            )
+            newsRepo.getTopHeadlines()
         } returns generateFailure()
 
         val params = GetTopHeadlineUseCase.TopHeadlineParam(country = "us", category = "tech")
@@ -60,10 +57,7 @@ class GetTopHeadlineUseCaseTest {
     fun `test usecaseRun return value`() {
         // given
         coEvery {
-            newsRepo.getTopHeadlines(
-                country = "us",
-                category = "tech"
-            )
+            newsRepo.getTopHeadlines()
         } returns generateFakeNews()
 
         val params = GetTopHeadlineUseCase.TopHeadlineParam(country = "us", category = "tech")
@@ -74,23 +68,15 @@ class GetTopHeadlineUseCaseTest {
         }
     }
 
-    private fun generateFailure(): Either<Failure, List<News>> {
+    private fun generateFailure(): Either<Failure, News> {
         return Either.Left(Failure.ServerError("error"))
     }
 
-    private fun generateFakeNews(): Either<Failure, List<News>> {
+    private fun generateFakeNews(): Either<Failure, News> {
         return Either.Right(
-            listOf(
                 News(
-                    source = NewsSource(id = "1", name = "title"),
-                    author = "",
-                    title = "",
-                    description = "",
-                    urlToImage = "",
-                    url = "",
-                    publishedAt = ""
+                   ""
                 )
-            )
         )
     }
 }

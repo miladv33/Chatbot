@@ -5,6 +5,7 @@ import com.pratama.baseandroid.data.datasource.remote.model.NewsResponse
 import com.pratama.baseandroid.data.datasource.remote.model.SourceResponse
 import com.pratama.baseandroid.data.datasource.remote.model.TopHeadlineResponse
 import com.pratama.baseandroid.data.datasource.remote.service.NewsApiServices
+import com.pratama.baseandroid.domain.entity.News
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -41,25 +42,17 @@ class NewsRemoteDatasourceImplTest {
         val category = "technology"
         val country = "us"
 
-        coEvery { service.getTopHeadlines(country, category) } returns generateFakeNews()
+        coEvery { service.getTopHeadlines() } returns generateFakeNews()
 
         // when
-        val result = newsRemoteDatasourceImpl.getTopHeadlines(category, country)
+        val result = newsRemoteDatasourceImpl.getTopHeadlines()
 
-        coVerify { service.getTopHeadlines(category = category, country = country) }
+        coVerify { service.getTopHeadlines() }
 
-        assertEquals(1, result.size)
+        assertEquals(1, result)
     }
 
-    private fun generateFakeNews(): TopHeadlineResponse {
-        return TopHeadlineResponse(
-            status = "success",
-            totalResults = 1,
-            articles = listOf(
-                NewsResponse(
-                    source = SourceResponse(id = "1", name = "ok")
-                )
-            )
-        )
+    private fun generateFakeNews(): News {
+        return News("")
     }
 }

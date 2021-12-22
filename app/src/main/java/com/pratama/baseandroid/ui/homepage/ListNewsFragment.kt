@@ -52,7 +52,7 @@ class ListNewsFragment : BaseFragmentBinding<FragmentListNewsBinding>(), NewsIte
                     ThreadInfoLogger.logThreadInfo("show news viewmodel")
 
                     state.news.map {
-                        d { "news loaded -> ${it.title}" }
+                        d { "news loaded -> ${it.cnt}" }
                         listNewsAdapter.add(NewsItem(it, this@ListNewsFragment))
                     }
                 }
@@ -77,7 +77,7 @@ class ListNewsFragment : BaseFragmentBinding<FragmentListNewsBinding>(), NewsIte
     }
 
     private fun callData() {
-        listNewsViewModel.getTopHeadlinesByCountry(country = "us", category = "technology")
+        listNewsViewModel.getTopHeadlinesByCountry("")
     }
 
 }
